@@ -139,9 +139,9 @@
             this.lblAnalizador.ForeColor = System.Drawing.Color.RoyalBlue;
             this.lblAnalizador.Location = new System.Drawing.Point(273, 19);
             this.lblAnalizador.Name = "lblAnalizador";
-            this.lblAnalizador.Size = new System.Drawing.Size(104, 17);
+            this.lblAnalizador.Size = new System.Drawing.Size(121, 17);
             this.lblAnalizador.TabIndex = 9;
-            this.lblAnalizador.Text = "Ir al Analizador";
+            this.lblAnalizador.Text = "Ir al Analizador →";
             this.lblAnalizador.Click += new System.EventHandler(this.lblAnalizador_Click);
             // 
             // FrmTokens

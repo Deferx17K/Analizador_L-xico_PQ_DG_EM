@@ -105,7 +105,7 @@ namespace Analizador_Léxico_PQ_DJ_EM.Clases
             {
                 char c = contenidoFuente[posicion];
 
-                //Bloque 1
+                //Bloque 1: Espacios en blanco y saltos de línea
                 if (c == '\n')
                 {
                     lineaActual++;

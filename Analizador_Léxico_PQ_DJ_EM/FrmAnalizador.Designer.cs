@@ -87,7 +87,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.dgvResultado.RowHeadersWidth = 51;
             this.dgvResultado.RowTemplate.Height = 24;
             this.dgvResultado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvResultado.Size = new System.Drawing.Size(949, 265);
+            this.dgvResultado.Size = new System.Drawing.Size(949, 269);
             this.dgvResultado.TabIndex = 0;
             // 
             // dgvError
@@ -121,7 +121,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.dgvError.RowHeadersWidth = 51;
             this.dgvError.RowTemplate.Height = 24;
             this.dgvError.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvError.Size = new System.Drawing.Size(949, 265);
+            this.dgvError.Size = new System.Drawing.Size(949, 269);
             this.dgvError.TabIndex = 1;
             // 
             // dgvSimbolos
@@ -138,7 +138,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.dgvSimbolos.RowHeadersWidth = 51;
             this.dgvSimbolos.RowTemplate.Height = 24;
             this.dgvSimbolos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSimbolos.Size = new System.Drawing.Size(949, 265);
+            this.dgvSimbolos.Size = new System.Drawing.Size(949, 269);
             this.dgvSimbolos.TabIndex = 0;
             // 
             // btnAnalizar
@@ -202,7 +202,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.lbltokens.ForeColor = System.Drawing.Color.RoyalBlue;
             this.lbltokens.Location = new System.Drawing.Point(885, 20);
             this.lbltokens.Name = "lbltokens";
-            this.lbltokens.Size = new System.Drawing.Size(120, 21);
+            this.lbltokens.Size = new System.Drawing.Size(104, 20);
             this.lbltokens.TabIndex = 8;
             this.lbltokens.Text = "Ir a Tokens →";
             this.lbltokens.Click += new System.EventHandler(this.lbltokens_Click);
@@ -233,40 +233,40 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.menuExportarSimbolos,
             this.menuExportarEstadisticas});
             this.cmsExportar.Name = "cmsExportar";
-            this.cmsExportar.Size = new System.Drawing.Size(463, 144);
+            this.cmsExportar.Size = new System.Drawing.Size(405, 124);
             // 
             // menuExportarTodo
             // 
             this.menuExportarTodo.Name = "menuExportarTodo";
-            this.menuExportarTodo.Size = new System.Drawing.Size(462, 28);
+            this.menuExportarTodo.Size = new System.Drawing.Size(404, 24);
             this.menuExportarTodo.Text = "Exportar Todo (Completo: CSV / TXT)";
             this.menuExportarTodo.Click += new System.EventHandler(this.menuExportarTodo_Click);
             // 
             // menuExportarTokens
             // 
             this.menuExportarTokens.Name = "menuExportarTokens";
-            this.menuExportarTokens.Size = new System.Drawing.Size(462, 28);
+            this.menuExportarTokens.Size = new System.Drawing.Size(404, 24);
             this.menuExportarTokens.Text = "Exportar solo Tokens (CSV / TXT)";
             this.menuExportarTokens.Click += new System.EventHandler(this.menuExportarTokens_Click);
             // 
             // menuExportarErrores
             // 
             this.menuExportarErrores.Name = "menuExportarErrores";
-            this.menuExportarErrores.Size = new System.Drawing.Size(462, 28);
+            this.menuExportarErrores.Size = new System.Drawing.Size(404, 24);
             this.menuExportarErrores.Text = "Exportar solo Errores Léxicos (CSV / TXT)";
             this.menuExportarErrores.Click += new System.EventHandler(this.menuExportarErrores_Click);
             // 
             // menuExportarSimbolos
             // 
             this.menuExportarSimbolos.Name = "menuExportarSimbolos";
-            this.menuExportarSimbolos.Size = new System.Drawing.Size(462, 28);
+            this.menuExportarSimbolos.Size = new System.Drawing.Size(404, 24);
             this.menuExportarSimbolos.Text = "Exportar solo Tabla de Símbolos (CSV / TXT)";
             this.menuExportarSimbolos.Click += new System.EventHandler(this.menuExportarSimbolos_Click);
             // 
             // menuExportarEstadisticas
             // 
             this.menuExportarEstadisticas.Name = "menuExportarEstadisticas";
-            this.menuExportarEstadisticas.Size = new System.Drawing.Size(462, 28);
+            this.menuExportarEstadisticas.Size = new System.Drawing.Size(404, 24);
             this.menuExportarEstadisticas.Text = "Exportar solo Panel de Estadísticas (CSV / TXT)";
             this.menuExportarEstadisticas.Click += new System.EventHandler(this.menuExportarEstadisticas_Click);
             // 
@@ -280,7 +280,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.chkResaltado.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.chkResaltado.Location = new System.Drawing.Point(605, 59);
             this.chkResaltado.Name = "chkResaltado";
-            this.chkResaltado.Size = new System.Drawing.Size(159, 25);
+            this.chkResaltado.Size = new System.Drawing.Size(139, 23);
             this.chkResaltado.TabIndex = 4;
             this.chkResaltado.Text = "Resaltar Sintaxis";
             this.chkResaltado.UseVisualStyleBackColor = true;
@@ -293,7 +293,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.lblTitulo.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.lblTitulo.Location = new System.Drawing.Point(26, 14);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(301, 34);
+            this.lblTitulo.Size = new System.Drawing.Size(257, 28);
             this.lblTitulo.TabIndex = 7;
             this.lblTitulo.Text = "ANALIZADOR LÉXICO";
             // 
@@ -303,7 +303,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.lblCodigo.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigo.Location = new System.Drawing.Point(28, 97);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(205, 19);
+            this.lblCodigo.Size = new System.Drawing.Size(179, 17);
             this.lblCodigo.TabIndex = 6;
             this.lblCodigo.Text = "Código fuente a analizar:";
             // 
@@ -331,7 +331,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.lblStatLineas.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatLineas.Location = new System.Drawing.Point(14, 25);
             this.lblStatLineas.Name = "lblStatLineas";
-            this.lblStatLineas.Size = new System.Drawing.Size(138, 21);
+            this.lblStatLineas.Size = new System.Drawing.Size(123, 19);
             this.lblStatLineas.TabIndex = 0;
             this.lblStatLineas.Text = "Total de líneas: 0";
             // 
@@ -341,7 +341,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.lblStatTokens.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatTokens.Location = new System.Drawing.Point(14, 48);
             this.lblStatTokens.Name = "lblStatTokens";
-            this.lblStatTokens.Size = new System.Drawing.Size(146, 21);
+            this.lblStatTokens.Size = new System.Drawing.Size(128, 19);
             this.lblStatTokens.TabIndex = 1;
             this.lblStatTokens.Text = "Total de tokens: 0";
             // 
@@ -351,7 +351,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.lblStatErrores.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatErrores.Location = new System.Drawing.Point(195, 25);
             this.lblStatErrores.Name = "lblStatErrores";
-            this.lblStatErrores.Size = new System.Drawing.Size(146, 21);
+            this.lblStatErrores.Size = new System.Drawing.Size(128, 19);
             this.lblStatErrores.TabIndex = 2;
             this.lblStatErrores.Text = "Total de errores: 0";
             // 
@@ -361,7 +361,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.lblStatTiempo.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatTiempo.Location = new System.Drawing.Point(195, 48);
             this.lblStatTiempo.Name = "lblStatTiempo";
-            this.lblStatTiempo.Size = new System.Drawing.Size(180, 21);
+            this.lblStatTiempo.Size = new System.Drawing.Size(160, 19);
             this.lblStatTiempo.TabIndex = 3;
             this.lblStatTiempo.Text = "Tiempo aprox: 0.00 ms";
             // 
@@ -371,7 +371,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             this.lblStatCategorias.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatCategorias.Location = new System.Drawing.Point(14, 73);
             this.lblStatCategorias.Name = "lblStatCategorias";
-            this.lblStatCategorias.Size = new System.Drawing.Size(175, 19);
+            this.lblStatCategorias.Size = new System.Drawing.Size(148, 16);
             this.lblStatCategorias.TabIndex = 4;
             this.lblStatCategorias.Text = "Tokens por categoría:";
             // 
@@ -407,10 +407,10 @@ namespace Analizador_Léxico_PQ_DJ_EM
             // tabPaginaTokens
             // 
             this.tabPaginaTokens.Controls.Add(this.dgvResultado);
-            this.tabPaginaTokens.Location = new System.Drawing.Point(4, 30);
+            this.tabPaginaTokens.Location = new System.Drawing.Point(4, 26);
             this.tabPaginaTokens.Name = "tabPaginaTokens";
             this.tabPaginaTokens.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPaginaTokens.Size = new System.Drawing.Size(955, 271);
+            this.tabPaginaTokens.Size = new System.Drawing.Size(955, 275);
             this.tabPaginaTokens.TabIndex = 0;
             this.tabPaginaTokens.Text = "Tokens Encontrados";
             this.tabPaginaTokens.UseVisualStyleBackColor = true;
@@ -418,10 +418,10 @@ namespace Analizador_Léxico_PQ_DJ_EM
             // tabPaginaErrores
             // 
             this.tabPaginaErrores.Controls.Add(this.dgvError);
-            this.tabPaginaErrores.Location = new System.Drawing.Point(4, 30);
+            this.tabPaginaErrores.Location = new System.Drawing.Point(4, 26);
             this.tabPaginaErrores.Name = "tabPaginaErrores";
             this.tabPaginaErrores.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPaginaErrores.Size = new System.Drawing.Size(955, 271);
+            this.tabPaginaErrores.Size = new System.Drawing.Size(955, 275);
             this.tabPaginaErrores.TabIndex = 1;
             this.tabPaginaErrores.Text = "Errores Léxicos";
             this.tabPaginaErrores.UseVisualStyleBackColor = true;
@@ -429,10 +429,10 @@ namespace Analizador_Léxico_PQ_DJ_EM
             // tabPaginaSimbolos
             // 
             this.tabPaginaSimbolos.Controls.Add(this.dgvSimbolos);
-            this.tabPaginaSimbolos.Location = new System.Drawing.Point(4, 30);
+            this.tabPaginaSimbolos.Location = new System.Drawing.Point(4, 26);
             this.tabPaginaSimbolos.Name = "tabPaginaSimbolos";
             this.tabPaginaSimbolos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPaginaSimbolos.Size = new System.Drawing.Size(955, 271);
+            this.tabPaginaSimbolos.Size = new System.Drawing.Size(955, 275);
             this.tabPaginaSimbolos.TabIndex = 2;
             this.tabPaginaSimbolos.Text = "Tabla de Símbolos";
             this.tabPaginaSimbolos.UseVisualStyleBackColor = true;
@@ -444,7 +444,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
             // 
             // FrmAnalizador
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1018, 688);
