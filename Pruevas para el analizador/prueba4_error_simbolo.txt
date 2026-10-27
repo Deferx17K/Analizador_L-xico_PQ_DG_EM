@@ -1,0 +1,12 @@
+namespace ErrorNamespace
+{
+    class TestError1
+    {
+        var valor$1 = 5; 
+        
+        if (valor == 5)
+        {
+            valor += 1;
+        }
+    }
+}

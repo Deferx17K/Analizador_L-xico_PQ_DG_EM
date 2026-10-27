@@ -1,0 +1,21 @@
+namespace MatematicasApp
+{
+    class Calculadora
+    {
+        var baseVal = 5;
+        var alturaVal = 10;
+        var area = 0;
+        var estado = 1;
+
+        area = baseVal * alturaVal;
+
+        if (area > 20)
+        {
+            var resultado = 1;
+            if (resultado == 1)
+            {
+                estado = 0;
+            }
+        }
+    }
+}

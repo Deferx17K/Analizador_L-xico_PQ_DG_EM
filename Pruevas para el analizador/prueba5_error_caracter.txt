@@ -1,0 +1,12 @@
+namespace ErrorNamespace2
+{
+    class TestError2
+    {
+        var numero = 10;
+        
+        if (numero # 10)
+        {
+            numero = 5;
+        }
+    }
+}

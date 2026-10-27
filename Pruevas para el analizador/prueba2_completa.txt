@@ -1,0 +1,20 @@
+namespace SistemaGestion
+{
+    class Operaciones
+    {
+        var limite = 100;
+        var acumulador = 0;
+        var activo = 1;
+
+        if (limite >= 50)
+        {
+            acumulador = acumulador + 25;
+            activo = 1;
+        }
+        else
+        {
+            acumulador = 0;
+            activo = 0;
+        }
+    }
+}
