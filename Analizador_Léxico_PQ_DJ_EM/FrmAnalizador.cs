@@ -10,6 +10,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 
 namespace Analizador_Léxico_PQ_DJ_EM
 {
@@ -179,15 +181,21 @@ namespace Analizador_Léxico_PQ_DJ_EM
             {
                 string etiqueta = tipo == "TODO" ? "Completo" : tipo;
                 sfd.Title = $"Exportar Resultados del Análisis ({etiqueta})";
-                sfd.Filter = "Archivo CSV (*.csv)|*.csv|Archivo de Texto (*.txt)|*.txt|Todos los archivos (*.*)|*.*";
-                sfd.FileName = $"Analisis_Lexico_{etiqueta}_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+                sfd.Filter = "Archivo Excel (*.xlsx)|*.xlsx|Archivo CSV (*.csv)|*.csv|Archivo de Texto (*.txt)|*.txt|Todos los archivos (*.*)|*.*";
+                sfd.FileName = $"Analisis_Lexico_{etiqueta}_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
                         string ext = Path.GetExtension(sfd.FileName).ToLower();
-                        if (ext == ".csv")
+
+                        // MODIFICACIÓN 3: Se añadió la validación para llamar a GenerarExcel
+                        if (ext == ".xlsx")
+                        {
+                            GenerarExcel(sfd.FileName, tipo);
+                        }
+                        else if (ext == ".csv")
                         {
                             GenerarCSV(sfd.FileName, tipo);
                         }
@@ -497,6 +505,133 @@ namespace Analizador_Léxico_PQ_DJ_EM
             FrmTokens FrmTokens = new FrmTokens();
             this.Hide();
             FrmTokens.Show();
+        }
+
+        private void GenerarExcel(string ruta, string tipo)
+        {
+            // Configuración requerida para versiones recientes de EPPlus
+            OfficeOpenXml.ExcelPackage.License.SetNonCommercialOrganization("USAC CUNOR");
+
+            using (var package = new ExcelPackage())
+            {
+                var tokens = DatosCompartidos.Motor.ObtenerTokens();
+                var errores = DatosCompartidos.Motor.ObtenerErrores();
+                var simbolos = DatosCompartidos.Motor.ObtenerTablaSimbolos().ObtenerSimbolos().ToList();
+                int totalLineas = string.IsNullOrEmpty(rtbTexto.Text) ? 0 : rtbTexto.Lines.Length;
+
+                // 1. Hoja de Estadísticas
+                if (tipo == "TODO" || tipo == "ESTADISTICAS")
+                {
+                    var wsEst = package.Workbook.Worksheets.Add("Estadísticas");
+
+                    wsEst.Cells["A1"].Value = "Métrica del Análisis";
+                    wsEst.Cells["B1"].Value = "Valor";
+                    AplicarEstiloCabecera(wsEst.Cells["A1:B1"]);
+
+                    wsEst.Cells["A2"].Value = "Total de líneas"; wsEst.Cells["B2"].Value = totalLineas;
+                    wsEst.Cells["A3"].Value = "Total de tokens"; wsEst.Cells["B3"].Value = tokens.Count;
+                    wsEst.Cells["A4"].Value = "Total de errores"; wsEst.Cells["B4"].Value = errores.Count;
+                    wsEst.Cells["A5"].Value = "Tiempo de análisis (ms)"; wsEst.Cells["B5"].Value = ultimoTiempoMs;
+
+                    wsEst.Cells["A7"].Value = "Categoría de Token";
+                    wsEst.Cells["B7"].Value = "Cantidad";
+                    AplicarEstiloCabecera(wsEst.Cells["A7:B7"]);
+
+                    int row = 8;
+                    foreach (var cat in tokens.GroupBy(t => t.TipoToken).Select(g => new { Categoria = g.Key, Total = g.Count() }).OrderByDescending(x => x.Total))
+                    {
+                        wsEst.Cells[row, 1].Value = cat.Categoria;
+                        wsEst.Cells[row, 2].Value = cat.Total;
+                        row++;
+                    }
+                    wsEst.Cells.AutoFitColumns();
+                }
+
+                // 2. Hoja de Tokens
+                if (tipo == "TODO" || tipo == "TOKENS")
+                {
+                    var wsTokens = package.Workbook.Worksheets.Add("Tokens");
+                    string[] headers = { "#", "Lexema", "Tipo de Token", "Línea", "Columna" };
+                    for (int i = 0; i < headers.Length; i++)
+                    {
+                        wsTokens.Cells[1, i + 1].Value = headers[i];
+                    }
+                    AplicarEstiloCabecera(wsTokens.Cells[1, 1, 1, headers.Length]);
+
+                    int row = 2;
+                    foreach (var t in tokens)
+                    {
+                        wsTokens.Cells[row, 1].Value = t.IdResultado;
+                        wsTokens.Cells[row, 2].Value = t.Identificador;
+                        wsTokens.Cells[row, 3].Value = t.TipoToken;
+                        wsTokens.Cells[row, 4].Value = t.Linea;
+                        wsTokens.Cells[row, 5].Value = t.Columna;
+                        row++;
+                    }
+                    wsTokens.Cells.AutoFitColumns();
+                }
+
+                // 3. Hoja de Errores Léxicos
+                if (tipo == "TODO" || tipo == "ERRORES")
+                {
+                    var wsErr = package.Workbook.Worksheets.Add("Errores Léxicos");
+                    string[] headers = { "#", "Línea", "Columna", "Carácter / Lexema", "Descripción del Error" };
+                    for (int i = 0; i < headers.Length; i++)
+                    {
+                        wsErr.Cells[1, i + 1].Value = headers[i];
+                    }
+                    // Cabecera en tono rojo oscuro para denotar errores
+                    AplicarEstiloCabecera(wsErr.Cells[1, 1, 1, headers.Length], Color.FromArgb(163, 21, 21));
+
+                    int row = 2;
+                    foreach (var err in errores)
+                    {
+                        wsErr.Cells[row, 1].Value = err.IdError;
+                        wsErr.Cells[row, 2].Value = err.LineaError;
+                        wsErr.Cells[row, 3].Value = err.ColumnaError;
+                        wsErr.Cells[row, 4].Value = err.Error;
+                        wsErr.Cells[row, 5].Value = err.Observacion;
+                        row++;
+                    }
+                    wsErr.Cells.AutoFitColumns();
+                }
+
+                // 4. Hoja de Tabla de Símbolos
+                if (tipo == "TODO" || tipo == "SIMBOLOS")
+                {
+                    var wsSym = package.Workbook.Worksheets.Add("Tabla de Símbolos");
+                    string[] headers = { "Nombre", "Categoría", "Tipo de Dato", "Línea", "Ámbito" };
+                    for (int i = 0; i < headers.Length; i++)
+                    {
+                        wsSym.Cells[1, i + 1].Value = headers[i];
+                    }
+                    AplicarEstiloCabecera(wsSym.Cells[1, 1, 1, headers.Length]);
+
+                    int row = 2;
+                    foreach (var s in simbolos)
+                    {
+                        wsSym.Cells[row, 1].Value = s.Nombre;
+                        wsSym.Cells[row, 2].Value = s.CategoriaToken;
+                        wsSym.Cells[row, 3].Value = s.TipoDato;
+                        wsSym.Cells[row, 4].Value = s.Linea;
+                        wsSym.Cells[row, 5].Value = s.Ambito;
+                        row++;
+                    }
+                    wsSym.Cells.AutoFitColumns();
+                }
+
+                // Guardar archivo en disco
+                File.WriteAllBytes(ruta, package.GetAsByteArray());
+            }
+        }
+
+        // Método auxiliar de diseño para las celdas de encabezado
+        private void AplicarEstiloCabecera(ExcelRange rango, Color? colorFondo = null)
+        {
+            rango.Style.Font.Bold = true;
+            rango.Style.Fill.PatternType = ExcelFillStyle.Solid;
+            rango.Style.Fill.BackgroundColor.SetColor(colorFondo ?? Color.FromArgb(27, 38, 59)); // Azul oscuro institucional
+            rango.Style.Font.Color.SetColor(Color.White);
         }
     }
 }
