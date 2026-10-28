@@ -19,7 +19,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
         private double ultimoTiempoMs = 0;
         private bool aplicandoResaltado = false;
 
-        // P/Invoke para bloquear redibujado durante el resaltado y evitar parpadeos
+        // Para bloquear redibujado durante el resaltado y evitar parpadeos
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, IntPtr wParam, IntPtr lParam);
         private const int WM_SETREDRAW = 0x000B;
@@ -154,7 +154,7 @@ namespace Analizador_Léxico_PQ_DJ_EM
         
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            // Si se hace clic directo en el botón, abre el diálogo para exportar todo
+            
             EjecutarExportacion("TODO");
         }
 
